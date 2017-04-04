@@ -1,2 +1,8 @@
-<h1>HELLO FROM ANGULAR!!!</h1>
-<a href="/second">To second page</a>
+<main-header></main-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" ng-repeat="person in persons">
+            <single-card osoba=person></single-card>
+    </div>
+</div>
