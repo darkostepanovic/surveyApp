@@ -1,0 +1,1 @@
+var meanPersonApp = angular.module('meanPersonApp', ['ngRoute']);

@@ -1,0 +1,3 @@
+meanPersonApp.controller('mainController', function() {
+    
+});
