@@ -1,4 +1,4 @@
-meanPersonApp.directive('singleCard', function() {
+meanPersonApp.directive('singleCard',['$http', 'apiService', function($http, apiService) {
     
     return {
         restrict: 'E',
@@ -6,7 +6,14 @@ meanPersonApp.directive('singleCard', function() {
         replace: true,
         scope: {
             osoba: '='
+        },
+        link: function($scope) {
+            
+            $scope.deletePerson = function(id) {
+                apiService.deletePerson(id);
+            }
+            
         }
     }
     
-});
+}]);

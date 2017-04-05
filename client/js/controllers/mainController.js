@@ -4,6 +4,6 @@ meanPersonApp.controller('mainController', ['$scope', 'apiService', function($sc
     
     persons.then(function(res) {
         $scope.persons = res.data;
-    })
+    });
     
 }]);

@@ -14,6 +14,11 @@ meanPersonApp.config(['$routeProvider', '$locationProvider', function($routeProv
         controller: 'mainController'
     })
     
+    .when('/add',{
+        templateUrl: '/views/add.html',
+        controller: 'mainController'
+    })
+    
     .otherwise({
         templateUrl: '/views/main.html',
         controller: 'mainController'
