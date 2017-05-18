@@ -1,4 +1,4 @@
-meanPersonApp.controller('mainController', ['$scope', 'apiService', function($scope, apiService) {
+meanPersonApp.controller('mainController', ['$scope', '$location', 'apiService', function($scope, $location, apiService) {
     
     var persons = apiService.getAllPersons();
     

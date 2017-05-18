@@ -18,6 +18,16 @@ meanPersonApp.service('apiService', ['$http', function($http) {
                 method: "DELETE",
                 url: url
             });
+        },
+        
+        addPerson: function(person) {
+            
+            $http({
+                method: "POST",
+                url: "api/person",
+                data: person
+            });
+            
         }
         
     }

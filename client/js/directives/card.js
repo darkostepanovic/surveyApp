@@ -1,4 +1,4 @@
-meanPersonApp.directive('singleCard',['$http', 'apiService', function($http, apiService) {
+meanPersonApp.directive('singleCard',['$http', '$location', '$route', 'apiService', function($http, $location, $route, apiService) {
     
     return {
         restrict: 'E',
@@ -11,7 +11,8 @@ meanPersonApp.directive('singleCard',['$http', 'apiService', function($http, api
             
             $scope.deletePerson = function(id) {
                 apiService.deletePerson(id);
-            }
+                $route.reload();
+            };
             
         }
     }
