@@ -1,30 +1,44 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var api = require('./routes/api');
+const api = require('./routes/api');
 
-var port = 3000;
+const PORT = process.env.PORT || 3000;
 
-var app = express();
-
-//View engine
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile);
-
-// Set static folder
-app.use(express.static(path.join(__dirname, 'client')));
+const app = express();
 
 // Body parser MW
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use('/', index);
-app.use('/api', api);
-app.use('*', index);
 
-app.listen(port, function() {
-    console.log('Server started on port ' + port);
+// HTTP requests redirect
+app.use((req, res, next) => {
+    if (req.headers['x-forwarded-proto'] === 'https') {
+        res.redirect('http://' + req.hostname + req.url);
+    } else {
+        next();
+    }
 });
+
+app.use('/api', api);
+app.use(express.static('client')); // This needs to change to react "build" directory
+
+app.listen(PORT, () => {
+    console.log('Server started on port ' + PORT);
+});
+
+
+// SURVEY REDIRECT LOGIC:
+// ----------------------------
+//
+// if "answers" and "redirect" are FALSE, UI displays input field and redirects
+// to next questions
+// if "answers" are TRUE (UI display provided answers) and each answer provides
+// redirect reference. If none is provided, redirect to next question
+// if "answers" are FALSE and "redirect" has value (UI displays input field)
+// check the value provided by user. If that value is zero, redirect to
+// question from the "redirect" field
+//
+//
