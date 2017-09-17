@@ -24,5 +24,5 @@ These commands will install all of the required dependencies and start API and s
 
 ## API Endpoints
 
-GET        /api/surveys                  <--- get all questions
-GET        /api/surveys/:number          <--- get single survey question with provided number
+- GET        /api/surveys                  <--- get all questions
+- GET        /api/surveys/:number          <--- get single survey question with provided number
