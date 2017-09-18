@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const mongojs = require('mongojs');
-const db = mongojs('mongodb://nenad:admin@ds141024.mlab.com:41024/surveys', ['surveys']);
+const keys = require('../config/keys');
+
+
+const db = mongojs(keys.mongoURI, ['surveys']);
 
 // Get All Surveys
 router.get('/surveys', function(req, res, next) {
